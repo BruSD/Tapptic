@@ -2,15 +2,14 @@ package mobilesoft365.test.Tapptic;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
+import android.widget.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,8 +27,12 @@ public class MainTappticActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        StartPhon();
 
+    }
+    public void StartPhon(){
+        setContentView(R.layout.main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         TappList = (ListView)findViewById(R.id.tapp_list_view);
         TappList.setItemsCanFocus(true);
 
@@ -46,7 +49,6 @@ public class MainTappticActivity extends Activity {
 
         new ListLoader(MainTappticActivity.this).execute();
     }
-
     public void updateItemList(ArrayList<ItemInList> loadResult) {
         loadedData = loadResult;
 
@@ -113,6 +115,17 @@ public class MainTappticActivity extends Activity {
             }
             holder.TappTitle.setText((String) data.get(position).get(ATTRIBUTE_NAME_TEXT));
             holder.TappImage.setImageDrawable((Drawable) data.get(position).get(ATTRIBUTE_NAME_IMAGE));
+
+
+            TappList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent = new Intent(getApplicationContext(), TappDetailsActivity.class);
+                    intent.putExtra("tapptext",  holder.TappTitle.getText());
+                    startActivity(intent);
+                }
+
+            });
 
             return convertView;
         }

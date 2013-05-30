@@ -13,7 +13,7 @@ import android.os.Bundle;
 public class TappDetailsActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.tapp_details_layout);
 
     }
 }
