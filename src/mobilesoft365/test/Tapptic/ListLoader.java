@@ -52,7 +52,8 @@ public class ListLoader extends AsyncTask<Void, Void, ArrayList<ItemInList>> {
         if (dialog != null && dialog.isShowing())
             dialog.dismiss();
 
-        // TODO: some action when loading complete
+        if (activity instanceof MainTappticActivity)
+            ((MainTappticActivity)activity).updateItemList(result);
     }
 
     private void parseError(String text) {

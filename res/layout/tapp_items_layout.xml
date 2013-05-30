@@ -6,8 +6,6 @@
               android:layout_height="50dp"
               android:background="@drawable/background"
 
-
-
               >
     <ImageView
             android:id="@+id/tapp_image"
@@ -15,14 +13,11 @@
             android:layout_width="45dp"
             android:layout_margin="5dp"
             android:src="@drawable/food"
-
-
             />
     <TextView
             android:id="@+id/tapp_text"
             android:layout_height="fill_parent"
             android:layout_width="fill_parent"
-
             />
 
 </LinearLayout>
