@@ -4,16 +4,19 @@
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:background="">
+              android:background="#fff000">
     <ScrollView
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:layout_weight="1"
+            android:background="#ffffff"
+
            >
         <LinearLayout
                 android:layout_height="fill_parent"
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
+
                 >
         <ImageView
                 android:id="@+id/tapp_image_details"
@@ -32,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:orientation="horizontal"
-            android:background="#fff000"
+
             android:layout_weight="0.5"
             android:gravity="center"
             >

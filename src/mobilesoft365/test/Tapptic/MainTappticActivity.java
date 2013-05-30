@@ -35,23 +35,7 @@ public class MainTappticActivity extends Activity {
 
         ArrayList<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
 
-        Map<String, Object> m;
-            m = new HashMap<String, Object>();
-            m.put(ATTRIBUTE_NAME_TEXT, "Android");
-        data.add(m);
 
-        m = new HashMap<String, Object>();
-            m.put(ATTRIBUTE_NAME_TEXT, "iPhone");
-        data.add(m);
-        m = new HashMap<String, Object>();
-            m.put(ATTRIBUTE_NAME_TEXT, "WindowsMobile");
-        data.add(m);
-        m = new HashMap<String, Object>();
-            m.put(ATTRIBUTE_NAME_TEXT, "Blackberry");
-        data.add(m);
-        m = new HashMap<String, Object>();
-            m.put(ATTRIBUTE_NAME_TEXT, "Linux");
-            data.add(m);
 
         // Использование собственного шаблона
         SimpleAdapter adapter = new SimpleAdapter(this,
