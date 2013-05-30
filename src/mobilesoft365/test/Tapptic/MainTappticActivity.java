@@ -11,5 +11,6 @@ public class MainTappticActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        new ListLoader(MainTappticActivity.this).execute();
     }
 }
