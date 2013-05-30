@@ -2,6 +2,7 @@ package mobilesoft365.test.Tapptic;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,42 +28,47 @@ public class MainTappticActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StartPhon();
+    }
+
+    public void StartPhon(){
+
         setContentView(R.layout.main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         TappList = (ListView)findViewById(R.id.tapp_list_view);
         TappList.setItemsCanFocus(true);
         data = new ArrayList<Map<String, Object>>();
         Map<String, Object> m;
 
-            m = new HashMap<String, Object>();
-            m.put(ATTRIBUTE_NAME_TEXT, "Android");
+        m = new HashMap<String, Object>();
+        m.put(ATTRIBUTE_NAME_TEXT, "Android");
         data.add(m);
 
         m = new HashMap<String, Object>();
-            m.put(ATTRIBUTE_NAME_TEXT, "iPhone");
+        m.put(ATTRIBUTE_NAME_TEXT, "iPhone");
         data.add(m);
         m = new HashMap<String, Object>();
-            m.put(ATTRIBUTE_NAME_TEXT, "WindowsMobile");
+        m.put(ATTRIBUTE_NAME_TEXT, "WindowsMobile");
         data.add(m);
         m = new HashMap<String, Object>();
-            m.put(ATTRIBUTE_NAME_TEXT, "Blackberry");
+        m.put(ATTRIBUTE_NAME_TEXT, "Blackberry");
         data.add(m);
         m = new HashMap<String, Object>();
-            m.put(ATTRIBUTE_NAME_TEXT, "Linux");
-            data.add(m);
+        m.put(ATTRIBUTE_NAME_TEXT, "Linux");
+        data.add(m);
 
 
         // массив имен атрибутов, из которых будут читаться данные
         String[] from = { ATTRIBUTE_NAME_TEXT};
 
         // Использование собственного шаблона
-        SimpleAdapter adapter = new SimpleAdapter(this,
+        TappAdapter adapter = new TappAdapter(this,
                 data, R.layout.tapp_items_layout,
                 new String[] { ATTRIBUTE_NAME_TEXT },
                 new int [] { R.id.tapp_text});
         TappList.setAdapter(adapter);
     }
-
 
 
     class TappAdapter extends SimpleAdapter {
@@ -103,7 +109,7 @@ public class MainTappticActivity extends Activity {
                 LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = li.inflate(R.layout.tapp_items_layout, parent, false);
                 holder = new ViewHolder();
-
+                holder.TappTitle = (TextView)convertView.findViewById(R.id.tapp_text);
 
 
                 convertView.setTag(holder);
