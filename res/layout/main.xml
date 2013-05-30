@@ -3,11 +3,14 @@
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
+              android:background="#ffffff"
         >
-    <TextView
+    <ListView
+            android:id="@+id/tapp_list_view"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello World, MyActivity"
-            />
+            android:layout_height="fill_parent"
+            android:nextFocusUp="@+id/pqr"
+            android:nextFocusDown="@+id/mno"
+            android:focusable="false"/>
 </LinearLayout>
 
