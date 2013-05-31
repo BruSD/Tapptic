@@ -20,8 +20,8 @@ import java.util.Map;
 public class MainTappticActivity extends Activity {
 
     ListView TappList;
-    final String ATTRIBUTE_NAME_TEXT = "name";
-    final String ATTRIBUTE_NAME_IMAGE = "image";
+    final String ATTRIBUTE_NAME = "name";
+    final String ATTRIBUTE_IMAGE = "image";
 
     ArrayList<ItemInList> loadedData = new ArrayList<ItemInList>();
 
@@ -40,7 +40,7 @@ public class MainTappticActivity extends Activity {
         // Использование собственного шаблона
         SimpleAdapter adapter = new SimpleAdapter(this,
                 data, R.layout.tapp_items_layout,
-                new String[] { ATTRIBUTE_NAME_TEXT },
+                new String[] {ATTRIBUTE_NAME},
                 new int [] { R.id.tapp_text});
         TappList.setAdapter(adapter);
 
@@ -53,15 +53,15 @@ public class MainTappticActivity extends Activity {
         ArrayList<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
         for(ItemInList item : loadResult) {
             Map mapObject = new HashMap<String, Object>();
-            mapObject.put(ATTRIBUTE_NAME_TEXT, item.getName());
-            mapObject.put(ATTRIBUTE_NAME_IMAGE, item.getImage());
+            mapObject.put(ATTRIBUTE_NAME, item.getName());
+            mapObject.put(ATTRIBUTE_IMAGE, item.getImage());
             data.add(mapObject);
         }
 
         TappAdapter adapter =  new TappAdapter(this,
                 data, R.layout.tapp_items_layout,
-                new String[] { ATTRIBUTE_NAME_TEXT},
-                new int [] { R.id.tapp_text});
+                new String[] {ATTRIBUTE_NAME, ATTRIBUTE_IMAGE},
+                new int [] { R.id.tapp_text, R.id.tapp_image});
 
         TappList.setAdapter(adapter);
     }
@@ -111,8 +111,8 @@ public class MainTappticActivity extends Activity {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            holder.TappTitle.setText((String) data.get(position).get(ATTRIBUTE_NAME_TEXT));
-            holder.TappImage.setImageDrawable((Drawable) data.get(position).get(ATTRIBUTE_NAME_IMAGE));
+            holder.TappTitle.setText((String) data.get(position).get(ATTRIBUTE_NAME));
+            holder.TappImage.setImageDrawable((Drawable) data.get(position).get(ATTRIBUTE_IMAGE));
 
             return convertView;
         }

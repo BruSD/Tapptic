@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,15 +22,15 @@ import java.util.ArrayList;
  * Created with IntelliJ IDEA.
  * User: MediumMG
  * Date: 30.05.13
- * Time: 16:36
+ * Time: 20:50
  * To change this template use File | Settings | File Templates.
  */
-public class ListLoader extends AsyncTask<Void, Void, ArrayList<ItemInList>> {
+public class ObjectLoader extends AsyncTask<String, Void, ItemObject> {
 
     private Activity activity;
     private ProgressDialog dialog;
 
-    public ListLoader(Activity currentActivity){
+    public ObjectLoader(Activity currentActivity){
         this.activity = currentActivity;
     }
 
@@ -48,12 +47,11 @@ public class ListLoader extends AsyncTask<Void, Void, ArrayList<ItemInList>> {
     }
 
     @Override
-    protected void onPostExecute(ArrayList<ItemInList> result) {
+    protected void onPostExecute(ItemObject result) {
         if (dialog != null && dialog.isShowing())
             dialog.dismiss();
 
-        if (activity instanceof MainTappticActivity)
-            ((MainTappticActivity)activity).updateItemList(result);
+
     }
 
     private void parseError(String text) {
@@ -85,15 +83,19 @@ public class ListLoader extends AsyncTask<Void, Void, ArrayList<ItemInList>> {
         return image;
     }
 
+
     @Override
-    protected ArrayList<ItemInList> doInBackground(Void... voids) {
-        ArrayList<ItemInList> itemList = new ArrayList<ItemInList>();
+    protected ItemObject doInBackground(String... strings) {
+
+        ItemObject result = null;
+        if (strings.length < 1)
+            return result;
 
         URL url = null;
         try {
-            url = new URL("http://dev.tapptic.com/test/json.php");
+            url = new URL("http://dev.tapptic.com/test/json.php?name="+strings[0]);
         } catch (MalformedURLException e) {
-            return itemList;
+            return result;
         }
 
         try {
@@ -101,7 +103,6 @@ public class ListLoader extends AsyncTask<Void, Void, ArrayList<ItemInList>> {
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 InputStream stream = conn.getInputStream();
                 BufferedReader rd = new BufferedReader(new InputStreamReader(stream));
-
 
                 try {
                     // Read response until the end
@@ -111,14 +112,13 @@ public class ListLoader extends AsyncTask<Void, Void, ArrayList<ItemInList>> {
                         total.append(line);
                     }
 
-                    JSONArray array = new JSONArray(total.toString());
-                    for (int i=0; i<array.length(); i++) {
-                        JSONObject object = array.getJSONObject(i);
-                        String name = object.getString("name");
-                        Drawable image = fetchDrawable(object.getString("image"));
-                        itemList.add(new ItemInList(name, image));
-                    }
+                    JSONObject jObject = new JSONObject(total.toString());
 
+                    String name = jObject.getString("name");
+                    String text = jObject.getString("text");
+                    Drawable image = fetchDrawable(jObject.getString("image"));
+
+                    result = new ItemObject(name, text, image);
                 }
                 catch (IOException e) {
                     parseError("Parsing IOException");
@@ -136,11 +136,6 @@ public class ListLoader extends AsyncTask<Void, Void, ArrayList<ItemInList>> {
             parseError("Bad connection. Please check your connection and try again later");
         }
 
-        try {
-            Thread.sleep(3000,0);
-        }
-        catch (InterruptedException e){}
-
-        return itemList;
+        return result;
     }
 }

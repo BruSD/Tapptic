@@ -6,16 +6,18 @@ import android.graphics.drawable.Drawable;
  * Created with IntelliJ IDEA.
  * User: MediumMG
  * Date: 30.05.13
- * Time: 16:37
+ * Time: 20:44
  * To change this template use File | Settings | File Templates.
  */
-public class ItemInList {
+public class ItemObject {
 
     private String name;
+    private String text;
     private Drawable image = null;
 
-    public ItemInList(String itemName, Drawable itemImage) {
+    public ItemObject(String itemName, String itemText, Drawable itemImage) {
         this.name = itemName;
+        this.text = itemText;
         this.image = itemImage;
     }
 
@@ -23,7 +25,12 @@ public class ItemInList {
         return this.name;
     }
 
+    public String getText() {
+        return this.text;
+    }
+
     public Drawable getImage() {
         return this.image;
     }
+
 }
