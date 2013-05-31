@@ -19,15 +19,17 @@ public class TappDetailsActivity extends Activity {
 
     ScrollView scrollAlpha;
     Button OnOffAlfaButton;
+
     AlphaAnimation offAnimation;
     AlphaAnimation onAnimation;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tapp_details_layout);
 
+        String name = getIntent().getStringExtra("tappname");
+
         OnOffAlfaButton = (Button)findViewById(R.id.on_off_button);
-
-
 
         OnOffAlfaButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,7 +37,7 @@ public class TappDetailsActivity extends Activity {
                 ShowHideScroll();
             }
             });
-
+        new ObjectLoader(TappDetailsActivity.this).execute(name);
     }
 
     public void ShowHideScroll(){
@@ -52,13 +54,11 @@ public class TappDetailsActivity extends Activity {
                 @Override
                 public void onAnimationEnd(Animation arg0) {
                     OnOffAlfaButton.setEnabled(true);
-
                 }
 
                 @Override
                 public void onAnimationRepeat(Animation arg0) {
                     // TODO Auto-generated method stub
-
                 }
 
                 @Override

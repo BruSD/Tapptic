@@ -121,7 +121,7 @@ public class MainTappticActivity extends Activity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Intent intent = new Intent(getApplicationContext(), TappDetailsActivity.class);
-                    intent.putExtra("tapptext",  holder.TappTitle.getText());
+                    intent.putExtra("tappname",  holder.TappTitle.getText());
                     startActivity(intent);
                 }
 
