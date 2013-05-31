@@ -4,12 +4,13 @@
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:background="#fff000">
+              android:background="#A00000">
     <ScrollView
+            android:id="@+id/scroll_alpha"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:layout_weight="1"
-            android:background="#ffffff"
+            android:background="#000000"
 
            >
         <LinearLayout
@@ -44,7 +45,7 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
 
-                   android:text="Off"/>
+                   android:text="@string/off_text"/>
     </LinearLayout>
 
 </LinearLayout>

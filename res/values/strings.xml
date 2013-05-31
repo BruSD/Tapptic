@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Tapptic</string>
+
+    <string name="off_text">Off</string>
+    <string name="on_text">On</string>
 </resources>
