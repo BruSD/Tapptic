@@ -57,9 +57,11 @@ public class ListLoader extends AsyncTask<Void, Void, ArrayList<ItemInList>> {
     }
 
     private void parseError(String text) {
+        /*
         if (dialog != null && dialog.isShowing())
             dialog.dismiss();
         Toast.makeText(activity, text, Toast.LENGTH_LONG).show();
+        */
     }
 
     public static Drawable fetchDrawable(String imageURLString) {
@@ -135,11 +137,6 @@ public class ListLoader extends AsyncTask<Void, Void, ArrayList<ItemInList>> {
         catch (IOException e) {
             parseError("Bad connection. Please check your connection and try again later");
         }
-
-        try {
-            Thread.sleep(3000,0);
-        }
-        catch (InterruptedException e){}
 
         return itemList;
     }

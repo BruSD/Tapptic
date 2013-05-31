@@ -5,47 +5,49 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:background="#A00000">
-    <ScrollView
-            android:id="@+id/scroll_alpha"
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:layout_weight="1"
-            android:background="#000000"
-
-           >
-        <LinearLayout
+        <ScrollView
+                android:id="@+id/scroll_alpha"
+                android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_width="wrap_content"
-                android:orientation="vertical"
-
+                android:layout_weight="1.0"
+                android:background="#000000"
                 >
-        <ImageView
-                android:id="@+id/tapp_image_details"
-                android:layout_height="wrap_content"
-                android:layout_width="fill_parent"
-                />
-        <TextView
-                android:id="@+id/tapp_text_details"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="123123123"/>
-        </LinearLayout>
-    </ScrollView>
+            <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    >
+               <ImageView
+                        android:id="@+id/tapp_image_details"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_alignParentTop="true"
+                        android:scaleType="fitXY"
+                        />
+                <TextView
+                        android:id="@+id/tapp_text_details"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:textColor="#FFFFFF"
+                        android:layout_below="@id/tapp_image_details"/>
+            </RelativeLayout>
+        </ScrollView>
+
 
     <LinearLayout
-            android:layout_height="wrap_content"
             android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:orientation="horizontal"
-
-            android:layout_weight="0.5"
+            android:layout_weight="9.0"
             android:gravity="center"
             >
            <Button
                    android:id="@+id/on_off_button"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-
-                   android:text="@string/off_text"/>
+                   android:text="@string/off_text"
+                   android:textStyle="bold"
+                   android:textAppearance="?android:attr/textAppearanceMedium"
+                   />
     </LinearLayout>
 
 </LinearLayout>

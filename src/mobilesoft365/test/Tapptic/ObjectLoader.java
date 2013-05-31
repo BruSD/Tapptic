@@ -51,13 +51,16 @@ public class ObjectLoader extends AsyncTask<String, Void, ItemObject> {
         if (dialog != null && dialog.isShowing())
             dialog.dismiss();
 
-
+        if (activity instanceof TappDetailsActivity)
+            ((TappDetailsActivity) activity).updateItem(result);
     }
 
     private void parseError(String text) {
+        /*
         if (dialog != null && dialog.isShowing())
             dialog.dismiss();
         Toast.makeText(activity, text, Toast.LENGTH_LONG).show();
+        */
     }
 
     public static Drawable fetchDrawable(String imageURLString) {

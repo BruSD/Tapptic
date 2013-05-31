@@ -1,12 +1,15 @@
 package mobilesoft365.test.Tapptic;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.Button;
-import android.widget.ScrollView;
+import android.widget.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -37,7 +40,32 @@ public class TappDetailsActivity extends Activity {
                 ShowHideScroll();
             }
             });
+
         new ObjectLoader(TappDetailsActivity.this).execute(name);
+    }
+
+    public void updateItem(ItemObject result) {
+        if (result == null)
+            return;
+
+        ImageView imageView = (ImageView)findViewById(R.id.tapp_image_details);
+        imageView.setImageDrawable(result.getImage());
+
+        ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
+
+        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+        Bitmap imageBitmap = ((BitmapDrawable)result.getImage()).getBitmap();
+
+        float coef = metrics.widthPixels / imageBitmap.getWidth();
+        layoutParams.height = (int) coef*imageBitmap.getHeight();
+        imageView.setLayoutParams(layoutParams);
+
+        String textX100= "";
+
+        for(int i=0;i<100;i++){
+            textX100 = textX100.concat(result.getText()+"\r\n");
+        }
+        ((TextView)findViewById(R.id.tapp_text_details)).setText(textX100);
     }
 
     public void ShowHideScroll(){

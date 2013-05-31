@@ -49,6 +49,7 @@ public class MainTappticActivity extends Activity {
 
         new ListLoader(MainTappticActivity.this).execute();
     }
+
     public void updateItemList(ArrayList<ItemInList> loadResult) {
         loadedData = loadResult;
 
@@ -121,7 +122,7 @@ public class MainTappticActivity extends Activity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Intent intent = new Intent(getApplicationContext(), TappDetailsActivity.class);
-                    intent.putExtra("tappname",  holder.TappTitle.getText());
+                    intent.putExtra("tappname", (String)  data.get(i).get(ATTRIBUTE_NAME));
                     startActivity(intent);
                 }
 
